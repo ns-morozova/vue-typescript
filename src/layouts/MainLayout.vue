@@ -1,9 +1,6 @@
 <template>
     <div class="layout">
-      <header class="header">
-        <!-- Тут можно разместить меню -->
-        <h2>Header</h2>
-      </header>
+      <Header />
       <main>
         <slot />
       </main>
@@ -11,23 +8,30 @@
         <p>&copy; 2025 Все права защищены</p>
       </footer>
     </div>
-  </template>
+</template>
+
+<script setup>
+import Header from '../components/Header.vue'
+</script>
   
-  <style scoped>
-  .layout {
-    width: 100%;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .header,
-  .footer {
-    background-color: #f3f4f6;
-    text-align: center;
-  }
-  
-  .footer {
-    margin-top: auto;
-  }
-  </style>
+<style scoped>
+.layout {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding-top: 72px;
+}
+
+.footer {
+  margin-top: auto;
+  background-color: #f3f4f6;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+ .layout {
+  padding: 0;
+ }
+}
+</style>

@@ -9,27 +9,38 @@
         </div>
   
         <!-- Бургер-меню (только мобильное) -->
-        <button class="mobile-menu-button" @click="toggleMobileMenu">
+        <button class="burgerMobile" @click="toggleMobileMenu">
           <span v-if="!mobileMenuOpen">☰</span>
           <span v-else>✕</span>
         </button>
   
         <!-- Мобильное меню -->
-        <transition name="slide">
-          <div v-show="mobileMenuOpen" class="mobile-menu">
+        <!-- <transition name="slide">
+          <div v-show="mobileMenuOpen" class="menuMobile">
             <ul>
               <li v-for="(item, index) in navigation" :key="index">
                 <a :href="item.href" @click="mobileMenuOpen = false">{{ item.name }}</a>
               </li>
-              <li>
-                <a href="#" @click="mobileMenuOpen = false">Связаться</a>
-              </li>
             </ul>
+            <Button label="Связаться" @click="mobileMenuOpen = false" class="btnMobile" />
           </div>
+        </transition> -->
+
+        <transition name="fade">
+            <div v-show="mobileMenuOpen" class="overlay" @click.self="mobileMenuOpen = false">
+                <div class="menuMobile">
+                <ul>
+                    <li v-for="(item, index) in navigation" :key="index">
+                    <a :href="item.href" @click="mobileMenuOpen = false">{{ item.name }}</a>
+                    </li>
+                </ul>
+                <Button label="Связаться" @click="mobileMenuOpen = false" class="btnMobile" />
+                </div>
+            </div>
         </transition>
   
         <!-- Меню (десктоп) -->
-        <nav class="desktop-menu">
+        <nav class="menuDesktop">
           <ul>
             <li v-for="(item, index) in navigation" :key="index">
               <a :href="item.href">{{ item.name }}</a>
@@ -38,10 +49,7 @@
         </nav>
   
         <!-- Кнопка "Связаться" (только десктоп) -->
-        <!-- <div class="login-button desktop-login">
-          <a href="#">Связаться</a>
-        </div> -->
-        <Button label="Связаться" class="desktop-login" />
+        <Button label="Связаться" class="btnDesktop" />
       </div>
     </header>
 </template>
@@ -74,8 +82,7 @@ mobileMenuOpen.value = !mobileMenuOpen.value
     right: 0;
     z-index: 1000;
     background-color: #fff;
-    border-bottom: 1px solid #e5e7eb;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
 }
 
 .container {
@@ -97,41 +104,82 @@ mobileMenuOpen.value = !mobileMenuOpen.value
     height: 100%;
 }
 
-.mobile-menu-button {
+.burgerMobile {
     display: block;
     background: none;
     border: none;
+    outline: none;
     font-size: 24px;
     cursor: pointer;
     padding: 0;
 }
 
-.mobile-menu {
-    position: absolute;
-    top: 100%;
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0);
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.menuMobile {
+    /* position: absolute;
+    top: calc(100% + 12px);
     left: 0;
     right: 0;
     background-color: white;
     padding: 16px 24px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-    z-index: 10;
+    z-index: 10; */
+    position: fixed;
+    inset: 0;
+    top: 76px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 16px 24px;
+    background-color: white;
+    /* color: #141414;
+    font-size: 18px;
+    line-height: 28px;
+    font-weight: 400; */
 }
 
-.mobile-menu ul {
+.menuMobile ul {
     list-style: none;
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    padding: 0;
+    margin: 0;
 }
 
-.mobile-menu ul li a {
+.menuMobile ul li {
+    padding: 12px 0;
+    border-bottom: 1px #DDDDDD solid;
+}
+
+.menuMobile ul li:last-child {
+  border-bottom: none;
+}
+
+.menuMobile ul li a {
     text-decoration: none;
-    color: #1f2937;
-    font-size: 16px;
-    font-weight: 500;
+    color: #141414;
+    font-size: 18px;
+    line-height: 28px;
+    font-weight: 400;
 }
 
-.slide-enter-active,
+.btnMobile {
+    width: 100%;
+}
+
+/* .slide-enter-active,
 .slide-leave-active {
     transition: all 0.3s ease;
 }
@@ -139,10 +187,24 @@ mobileMenuOpen.value = !mobileMenuOpen.value
 .slide-leave-to {
     transform: translateY(-10px);
     opacity: 0;
+} */
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
 }
 
-.desktop-menu,
-.desktop-login {
+/* --- Отключение скролла при открытом меню --- */
+:global(body) {
+  overflow: hidden;
+}
+
+.menuDesktop,
+.btnDesktop {
     display: none;
 }
 
@@ -152,28 +214,28 @@ mobileMenuOpen.value = !mobileMenuOpen.value
         padding: 16px;
     }
 
-    .mobile-menu-button {
+    .burgerMobile {
         display: none;
     }
 
-    .mobile-menu {
+    .menuMobile {
         display: none;
     }
 
-    .desktop-menu {
+    .menuDesktop {
         flex-grow: 1;
         display: flex;
         justify-content: center;
     }
 
-    .desktop-menu ul {
+    .menuDesktop ul {
         list-style: none;
         display: flex;
         gap: 40px;
         padding: 0;
     }
 
-    .desktop-menu ul li a {
+    .menuDesktop ul li a {
         text-decoration: none;
         color: #1f2937;
         font-size: 14px;
@@ -181,7 +243,7 @@ mobileMenuOpen.value = !mobileMenuOpen.value
         font-weight: 400;
     }
 
-    .desktop-login {
+    .btnDesktop {
         display: block;
     }
 }

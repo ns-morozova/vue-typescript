@@ -152,12 +152,15 @@ function toggleMobileMenu() {
 .menuMobile {
   position: fixed;
   inset: 0;
-  top: 76px;
+  /* top: 76px; */
+  top: 0;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   padding: 16px 24px;
+  margin-top: 76px;
   background-color: white;
+  z-index: 10;
 }
 
 .menuMobile ul {
@@ -214,9 +217,11 @@ function toggleMobileMenu() {
 }
 
 @media (min-width: 768px) {
-  .menuMobile {
-    top: 72px;
-  }
+  /* .menuMobile {
+    top: 64px;
+    padding-top: 24px;
+    box-shadow: 12px 2px 0 rgba(0, 0, 0, 0.15);
+  } */
 }
 
 /* Desktop styles */

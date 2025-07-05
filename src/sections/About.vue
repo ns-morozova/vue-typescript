@@ -80,7 +80,7 @@ const cards = [
 
 @media (min-width: 768px) {
     .about {
-        padding: 100px 0;
+        padding: 230px 0 50px;
     }
 
     .container {
@@ -117,5 +117,12 @@ const cards = [
         font-size: 32px;
         max-width: 92%;
     }
+}
+
+@media (min-width: 1440px) {
+    .about {
+        padding-top: 280px;
+    }
+
 }
 </style>

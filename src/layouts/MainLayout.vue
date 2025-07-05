@@ -23,13 +23,14 @@ import Footer from '../components/Footer.vue';
 }
 
 .main {
+  width: 100%;
   max-width: 1440px;
   margin: 0 auto;
 }
 
 @media (min-width: 768px) {
   .layout {
-    padding-top: 64px;
+    padding-top: 80px;
   }
 }
 

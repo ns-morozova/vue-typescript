@@ -51,13 +51,11 @@ margin: 0 auto;
 
 .title {
 font-size: 1.5rem;
-margin: 0;
 }
 
 .description {
 font-size: 1rem;
 color: #4b5563;
-margin: 0;
 }
 
 @media (min-width: 768px) {

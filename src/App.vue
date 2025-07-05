@@ -1,11 +1,13 @@
 <script setup lang="ts">
 import MainLayout from './layouts/MainLayout.vue';
 import HeroSection from './sections/HeroSection.vue';
+import About from './sections/About.vue';
 </script>
 
 <template>
   <MainLayout>
     <HeroSection />
+    <About />
   </MainLayout>
 </template>
 

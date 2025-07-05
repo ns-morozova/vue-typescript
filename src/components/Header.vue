@@ -7,26 +7,25 @@
             <img src="../assets/logo.svg" alt="Logo" />
           </a>
         </div>
-  
-        <!-- Бургер-меню (только мобильное) -->
-        <button class="burgerMobile" @click="toggleMobileMenu">
-          <span v-if="!mobileMenuOpen">☰</span>
-          <span v-else>✕</span>
-        </button>
-  
+
         <!-- Мобильное меню -->
         <transition name="fade">
-            <div v-show="mobileMenuOpen" class="overlay" @click.self="mobileMenuOpen = false">
+            <div v-show="mobileMenuOpen" >
                 <div class="menuMobile">
-                <ul>
-                    <li v-for="(item, index) in navigation" :key="index">
-                    <a :href="item.href" @click="mobileMenuOpen = false">{{ item.name }}</a>
-                    </li>
-                </ul>
-                <Button label="Связаться" @click="mobileMenuOpen = false" class="btnMobile" />
+                  <ul>
+                      <li v-for="(item, index) in navigation" :key="index">
+                      <a :href="item.href" @click="mobileMenuOpen = false">{{ item.name }}</a>
+                      </li>
+                  </ul>
+                  <Button label="Связаться" @click="mobileMenuOpen = false" class="btnMobile" />
                 </div>
             </div>
         </transition>
+
+        <!-- Бургер-меню (только мобильное) -->
+        <button class="burgerMobile" @click="toggleMobileMenu">
+          {{ mobileMenuOpen ? '✕' : '☰' }}
+        </button>
   
         <!-- Меню (десктоп) -->
         <nav class="menuDesktop">
@@ -60,17 +59,19 @@ const mobileMenuOpen = ref(false)
 function toggleMobileMenu() {
   mobileMenuOpen.value = !mobileMenuOpen.value
 
-  // При открытии или закрытии меню обновляем стиль body
+  const body = document.body
+
   if (mobileMenuOpen.value) {
-    document.body.style.overflow = 'hidden'
+    body.style.overflow = 'hidden'
   } else {
-    document.body.style.overflow = ''
+    body.style.overflow = ''
   }
 }
 </script>
 
 <style scoped>
 /* Base styles for mobile */
+
 .header {
     position: fixed;
     top: 0;

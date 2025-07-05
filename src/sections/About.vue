@@ -18,7 +18,7 @@
 
         <div class="cards">
             <StatCard v-for="(card, index) in cards" :key="index" :number="card.number" :description="card.description" />
-      </div>
+        </div>
       </div>
     </section>
 </template>

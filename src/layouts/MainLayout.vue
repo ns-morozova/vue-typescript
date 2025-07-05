@@ -28,6 +28,12 @@ import Footer from '../components/Footer.vue';
 }
 
 @media (min-width: 768px) {
+  .layout {
+    padding-top: 64px;
+  }
+}
+
+@media (min-width: 992px) {
  .layout {
   padding: 0;
  }

@@ -80,7 +80,7 @@ const cards = [
 
 @media (min-width: 768px) {
     .about {
-        padding: 230px 0 50px;
+        padding: 230px 24px 50px;
     }
 
     .container {

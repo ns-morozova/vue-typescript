@@ -58,7 +58,7 @@ const partners = [
 
 @media (min-width: 768px) {
     .partners {
-        padding: 50px 0;
+        padding: 50px 24px;
     }
 
     .title {

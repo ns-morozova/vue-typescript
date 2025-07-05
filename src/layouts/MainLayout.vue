@@ -1,17 +1,16 @@
 <template>
     <div class="layout">
       <Header />
-      <main>
+      <main class="main">
         <slot />
       </main>
-      <footer class="footer">
-        <p>&copy; 2025 Все права защищены</p>
-      </footer>
+      <Footer />
     </div>
 </template>
 
 <script setup lang="ts">
-import Header from '../components/Header.vue'
+import Header from '../components/Header.vue';
+import Footer from '../components/Footer.vue';
 </script>
   
 <style scoped>
@@ -23,10 +22,9 @@ import Header from '../components/Header.vue'
   padding-top: 72px;
 }
 
-.footer {
-  margin-top: auto;
-  background-color: #f3f4f6;
-  text-align: center;
+.main {
+  max-width: 1440px;
+  margin: 0 auto;
 }
 
 @media (min-width: 768px) {

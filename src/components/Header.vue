@@ -3,7 +3,7 @@
       <div class="container">
         <!-- Логотип -->
         <div class="logo">
-          <a href="#" @click.prevent>
+          <a href="#" @click.prevent="scrollToTop">
             <img src="../assets/logo.svg" alt="Logo" />
           </a>
         </div>
@@ -22,7 +22,7 @@
             </div>
         </transition>
 
-        <!-- Бургер-меню (только мобильное) -->
+        <!-- Бургер-меню (моб) -->
         <button class="burgerMobile" @click="toggleMobileMenu">
           {{ mobileMenuOpen ? '✕' : '☰' }}
         </button>
@@ -36,7 +36,7 @@
           </ul>
         </nav>
   
-        <!-- Кнопка "Связаться" (только десктоп) -->
+        <!-- Кнопка "Связаться" (десктоп) -->
         <Button label="Связаться" class="btnDesktop" />
       </div>
     </header>
@@ -45,6 +45,13 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import Button from '../components/Button.vue'
+
+function scrollToTop() {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  })
+}
 
 const navigation = [
     { name: 'О нас', href: '#about' },

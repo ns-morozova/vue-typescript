@@ -15,12 +15,22 @@
         <p class="approach">
             Наш подход — минимализм с глубиной, где каждый пиксель решает задачу, а не просто украшает
         </p>
+
+        <div class="cards">
+            <StatCard v-for="(card, index) in cards" :key="index" :number="card.number" :description="card.description" />
+      </div>
       </div>
     </section>
 </template>
   
 <script setup lang="ts">
+import StatCard from '../components/StatCard.vue';
 
+const cards = [
+  { number: '12', description: 'лет опыта на рынке' },
+  { number: '200', description: 'выполненных проектов' },
+  { number: '20', description: 'проектов с IT-компаниями и стартапами' },
+]
 </script>
 
 <style scoped>
@@ -62,9 +72,19 @@
     font-weight: 600;
 }
 
+.cards {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
 @media (min-width: 768px) {
     .about {
         padding: 100px 0;
+    }
+
+    .container {
+        gap: 56px;
     }
 
     .textBlock {
@@ -84,6 +104,11 @@
 
     .approach {
         font-size: 32px;
+    }
+
+    .cards {
+        flex-direction: row;
+        gap: 24px;
     }
 }
 

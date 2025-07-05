@@ -15,17 +15,6 @@
         </button>
   
         <!-- Мобильное меню -->
-        <!-- <transition name="slide">
-          <div v-show="mobileMenuOpen" class="menuMobile">
-            <ul>
-              <li v-for="(item, index) in navigation" :key="index">
-                <a :href="item.href" @click="mobileMenuOpen = false">{{ item.name }}</a>
-              </li>
-            </ul>
-            <Button label="Связаться" @click="mobileMenuOpen = false" class="btnMobile" />
-          </div>
-        </transition> -->
-
         <transition name="fade">
             <div v-show="mobileMenuOpen" class="overlay" @click.self="mobileMenuOpen = false">
                 <div class="menuMobile">
@@ -69,7 +58,14 @@ const navigation = [
 const mobileMenuOpen = ref(false)
 
 function toggleMobileMenu() {
-mobileMenuOpen.value = !mobileMenuOpen.value
+  mobileMenuOpen.value = !mobileMenuOpen.value
+
+  // При открытии или закрытии меню обновляем стиль body
+  if (mobileMenuOpen.value) {
+    document.body.style.overflow = 'hidden'
+  } else {
+    document.body.style.overflow = ''
+  }
 }
 </script>
 
@@ -128,14 +124,6 @@ mobileMenuOpen.value = !mobileMenuOpen.value
 }
 
 .menuMobile {
-    /* position: absolute;
-    top: calc(100% + 12px);
-    left: 0;
-    right: 0;
-    background-color: white;
-    padding: 16px 24px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-    z-index: 10; */
     position: fixed;
     inset: 0;
     top: 76px;
@@ -144,10 +132,6 @@ mobileMenuOpen.value = !mobileMenuOpen.value
     justify-content: space-between;
     padding: 16px 24px;
     background-color: white;
-    /* color: #141414;
-    font-size: 18px;
-    line-height: 28px;
-    font-weight: 400; */
 }
 
 .menuMobile ul {
@@ -179,16 +163,6 @@ mobileMenuOpen.value = !mobileMenuOpen.value
     width: 100%;
 }
 
-/* .slide-enter-active,
-.slide-leave-active {
-    transition: all 0.3s ease;
-}
-.slide-enter-from,
-.slide-leave-to {
-    transform: translateY(-10px);
-    opacity: 0;
-} */
-
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.3s ease;
@@ -196,11 +170,6 @@ mobileMenuOpen.value = !mobileMenuOpen.value
 .fade-enter-from,
 .fade-leave-to {
   opacity: 0;
-}
-
-/* --- Отключение скролла при открытом меню --- */
-:global(body) {
-  overflow: hidden;
 }
 
 .menuDesktop,

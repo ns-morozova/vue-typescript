@@ -72,7 +72,7 @@ const handleClick = () => {
 }
 
 .title {
-    font-size: 24px;
+    font-size: 30px;
     font-weight: 600;
     text-transform: uppercase;
 }

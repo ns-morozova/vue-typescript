@@ -8,11 +8,11 @@
 
         <div class="benefitsList">
             <BenefitCard
-            v-for="(card, index) in cards"
-            :key="index"
-            :icon="card.icon"
-            :title="card.title"
-            :text="card.text"
+              v-for="(card, index) in cards"
+              :key="index"
+              :icon="card.icon"
+              :title="card.title"
+              :text="card.text"
             />
         </div>
       </div>
@@ -58,6 +58,8 @@ const cards = [
 .benefits {
     position: relative;
     width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
     box-sizing: border-box;
     padding: 64px 24px 48px;
     background-color: #000;
@@ -86,8 +88,8 @@ const cards = [
 
 .container {
     position: relative;
-    max-width: 1280px;
-    margin: 0 auto;
+    /* max-width: 1280px; */
+    /* margin: 0 auto; */
     display: flex;
     flex-direction: column;
     align-items: center;
